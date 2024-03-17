@@ -3,3 +3,7 @@ uvicorn
 gunicorn
 jinja2
 python-multipart
+nltk
+PyMuPDF
+requests
+pandas

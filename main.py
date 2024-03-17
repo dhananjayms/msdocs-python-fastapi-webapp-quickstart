@@ -2,6 +2,8 @@ from fastapi import FastAPI, Form, Request, status
 from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from typing import Union
+
 import uvicorn
 
 
@@ -13,6 +15,11 @@ templates = Jinja2Templates(directory="templates")
 async def index(request: Request):
     print('Request for index page received')
     return templates.TemplateResponse('index.html', {"request": request})
+
+@app.get("/esg/{ticker}")
+async def esgData(ticker_id: str, q: Union[str, None] = None):
+    return {"item_id": ticker_id, "q": q}
+
 
 @app.get('/favicon.ico')
 async def favicon():
